@@ -27,7 +27,7 @@ then
         # 8-Comprueba si la contraseña se le ha otorgado de manera correcta.
         if [[ $? -eq 0 ]]
         then
-                echo "Comprovación de que el usario se ha creado correctamente"
+                echo "Comprovación de que la contraseña se le ha dado correctamente"
         else
                 echo "ha ocurrido un error"
                 exit 1
@@ -41,7 +41,9 @@ then
         echo "El resumen final es:"
         echo "- El usuario es: "${nombre_usuari}
         echo "- La contraseña es: "${contra2}
-        echo "Host desde donde se ha creado es: "${HOSTNAME}
+        echo "- El Host desde donde se ha creado es: "${HOSTNAME}
 else
         echo "No puedes ejecutar este script, intentalo mas tarde con el usuario root"
 fi
+
+
