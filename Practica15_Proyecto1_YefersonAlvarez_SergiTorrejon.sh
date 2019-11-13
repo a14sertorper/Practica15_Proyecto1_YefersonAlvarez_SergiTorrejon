@@ -22,3 +22,26 @@ then
                 echo "ha ocurrido un error"
                 exit 1
         fi
+        # 7-Establece la contraseña al usuario.
+        echo ${nombre_usuari}":"${contra} | chpasswd
+        # 8-Comprueba si la contraseña se le ha otorgado de manera correcta.
+        if [[ $? -eq 0 ]]
+        then
+                echo "Comprovación de que el usario se ha creado correctamente"
+        else
+                echo "ha ocurrido un error"
+                exit 1
+        fi
+        # 9-Fuerza a cambiar la contraseña.
+        echo "En el primer Sign In se te obliga a cambiar la contraseña, porfavor introduzca la contraseña otra vez"
+        read -s contra2
+        passwd -e ${nombre_usuari}
+        echo ${nombre_usuari}":"${contra2} | chpasswd
+        # 10-Muestra el usuario, la contraseña y desde que host se ha creado.
+        echo "El resumen final es:"
+        echo "- El usuario es: "${nombre_usuari}
+        echo "- La contraseña es: "${contra2}
+        echo "Host desde donde se ha creado es: "${HOSTNAME}
+else
+        echo "No puedes ejecutar este script, intentalo mas tarde con el usuario root"
+fi
